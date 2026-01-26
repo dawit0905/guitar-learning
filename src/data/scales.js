@@ -9,78 +9,178 @@ export const STANDARD_TUNING = ['E', 'A', 'D', 'G', 'B', 'E'];
 
 // Scale intervals (in semitones from root)
 export const SCALE_DEFINITIONS = {
+    // --- Pentatonics ---
     'minor-pentatonic': {
         name: '마이너 펜타토닉',
         nameEn: 'Minor Pentatonic',
+        category: 'pentatonic',
         intervals: [0, 3, 5, 7, 10],
         intervalNames: ['1', 'b3', '4', '5', 'b7'],
         genres: '록, 블루스, 팝, 메탈',
         stage: 1,
-        description: '마이너 펜타토닉은 5개의 음으로 구성된 스케일로, 일렉기타 입문자가 가장 먼저 배워야 할 스케일입니다. 록이나 블루스 솔로 연주에 즉시 활용 가능하며, 실수할 확률이 적어 즉흥 연주에 적합합니다.'
-    },
-    'major': {
-        name: '메이저 스케일',
-        nameEn: 'Major Scale (Ionian)',
-        intervals: [0, 2, 4, 5, 7, 9, 11],
-        intervalNames: ['1', '2', '3', '4', '5', '6', '7'],
-        genres: '팝, 컨트리, 재즈, 클래식',
-        stage: 1,
-        description: '모든 음악 이론의 기준이 되는 스케일입니다. 도레미파솔라시도의 간격을 손가락으로 익히며 지판의 구조를 이해하는 데 필수적입니다. 밝고 행복한 느낌을 줍니다.'
-    },
-    'blues': {
-        name: '블루스 스케일',
-        nameEn: 'Blues Scale',
-        intervals: [0, 3, 5, 6, 7, 10],
-        intervalNames: ['1', 'b3', '4', 'b5', '5', 'b7'],
-        blueNoteIndex: 3, // b5 is the blue note
-        genres: '블루스, 록, 재즈, 펑크',
-        stage: 2,
-        description: '마이너 펜타토닉에 블루 노트(b5)를 추가한 스케일입니다. 이 음 하나로 기타 특유의 끈적하고 거친 느낌을 낼 수 있습니다. 벤딩과 함께 사용하면 더욱 효과적입니다.'
-    },
-    'natural-minor': {
-        name: '내추럴 마이너',
-        nameEn: 'Natural Minor (Aeolian)',
-        intervals: [0, 2, 3, 5, 7, 8, 10],
-        intervalNames: ['1', '2', 'b3', '4', '5', 'b6', 'b7'],
-        genres: '발라드, 록, 메탈, 클래식',
-        stage: 2,
-        description: '슬프고 서정적인 느낌을 주는 스케일입니다. 메이저 스케일과 나란한조(Relative Key) 관계를 이해하면 암기량을 절반으로 줄일 수 있습니다. A 마이너 = C 메이저와 같은 구성음을 가집니다.'
+        description: '마이너 펜타토닉은 5개의 음으로 구성된 스케일로, 입문자가 가장 먼저 배워야 할 필수 스케일입니다.',
+        diatonicChords: ['m7', 'min', 'm11'],
+        recommendProgression: 'i - iv - v (Am - Dm - Em)'
     },
     'major-pentatonic': {
         name: '메이저 펜타토닉',
         nameEn: 'Major Pentatonic',
+        category: 'pentatonic',
         intervals: [0, 2, 4, 7, 9],
         intervalNames: ['1', '2', '3', '5', '6'],
         genres: '팝, 컨트리, 펑크, 록',
         stage: 3,
-        description: '밝고 경쾌한 느낌을 주는 스케일입니다. 마이너 펜타토닉과 손가락 모양은 같지만 으뜸음(Root)의 위치가 다릅니다. 팝이나 컨트리 음악의 솔로에서 많이 사용됩니다.'
+        description: '밝고 경쾌한 느낌을 주는 5음 스케일입니다.',
+        diatonicChords: ['maj7', 'maj6', 'add9'],
+        recommendProgression: 'I - IV - V (C - F - G)'
+    },
+
+    // --- Major & Minor ---
+    'major': {
+        name: '메이저 스케일',
+        nameEn: 'Major Scale (Ionian)',
+        category: 'major-minor',
+        intervals: [0, 2, 4, 5, 7, 9, 11],
+        intervalNames: ['1', '2', '3', '4', '5', '6', '7'],
+        genres: '팝, 컨트리, 재즈, 클래식',
+        stage: 1,
+        description: '모든 음악 이론의 기준이 되는 가장 중요한 스케일입니다.',
+        diatonicChords: ['IMaj7', 'iim7', 'iiim7', 'IVMaj7', 'V7', 'vim7', 'viim7b5'],
+        recommendProgression: 'I - IV - V - I'
+    },
+    'natural-minor': {
+        name: '내추럴 마이너',
+        nameEn: 'Natural Minor (Aeolian)',
+        category: 'major-minor',
+        intervals: [0, 2, 3, 5, 7, 8, 10],
+        intervalNames: ['1', '2', 'b3', '4', '5', 'b6', 'b7'],
+        genres: '발라드, 록, 메탈, 클래식',
+        stage: 2,
+        description: '슬프고 서정적인 느낌을 주는 서양 음악의 기초 마이너 스케일입니다.',
+        diatonicChords: ['im7', 'iim7b5', 'bIIIMaj7', 'ivm7', 'vm7', 'bVIMaj7', 'bVII7'],
+        recommendProgression: 'im - bVI - bVII - im'
     },
     'harmonic-minor': {
         name: '하모닉 마이너',
         nameEn: 'Harmonic Minor',
+        category: 'major-minor',
         intervals: [0, 2, 3, 5, 7, 8, 11],
         intervalNames: ['1', '2', 'b3', '4', '5', 'b6', '7'],
         genres: '네오 클래시컬, 메탈, 플라멩코',
         stage: 3,
-        description: '내추럴 마이너의 7번째 음을 반음 올린 스케일입니다. 클래식한 느낌이나 잉베이 맘스틴 같은 네오 클래시컬 메탈에서 많이 사용됩니다. 독특한 이국적인 분위기를 냅니다.'
+        description: '7번째 음을 올린 마이너 스케일로, 독특한 긴장감을 줍니다.',
+        diatonicChords: ['im(Maj7)', 'idim7', 'bIIIMaj7#5', 'ivm7', 'V7', 'bVIMaj7', 'viidim7']
+    },
+    'blues': {
+        name: '블루스 스케일',
+        nameEn: 'Blues Scale',
+        category: 'major-minor',
+        intervals: [0, 3, 5, 6, 7, 10],
+        intervalNames: ['1', 'b3', '4', 'b5', '5', 'b7'],
+        blueNoteIndex: 3,
+        genres: '블루스, 록, 재즈, 펑크',
+        stage: 2,
+        description: '펜타토닉에 블루 노트(b5)를 추가하여 끈적한 느낌을 줍니다.'
+    },
+
+    // --- Jazz Scales ---
+    'altered': {
+        name: '얼터드 스케일',
+        nameEn: 'Altered Scale',
+        category: 'jazz',
+        intervals: [0, 1, 3, 4, 6, 8, 10],
+        intervalNames: ['1', 'b2', '#2', '3', 'b5', 'b6', 'b7'],
+        genres: '재즈, 퓨전',
+        description: '도미넌트 7th 코드에서 최고의 긴장(Tension)을 만들어내는 스케일입니다.',
+        diatonicChords: ['V7alt']
+    },
+    'lydian-dominant': {
+        name: '리디안 도미넌트',
+        nameEn: 'Lydian Dominant',
+        category: 'jazz',
+        intervals: [0, 2, 4, 6, 7, 9, 10],
+        intervalNames: ['1', '2', '3', '#4', '5', '6', 'b7'],
+        genres: '재즈, 퓨전',
+        description: '리디안의 #4와 믹솔리디안의 b7이 결합된 세련된 사운드입니다.',
+        diatonicChords: ['7#11']
+    },
+
+    // --- Symmetric Scales ---
+    'diminished-hw': {
+        name: '디미니쉬 스케일 (HW)',
+        nameEn: 'Half-Whole Diminished',
+        category: 'symmetric',
+        intervals: [0, 1, 3, 4, 6, 7, 9, 10],
+        intervalNames: ['1', 'b2', 'b3', '3', 'b5', '5', '6', 'b7'],
+        genres: '재즈, 퓨전, 메탈',
+        description: '반음-온음이 반복되는 대칭 스케일로 도미넌트 코드에 잘 어울립니다.'
+    },
+    'whole-tone': {
+        name: '홀톤 스케일',
+        nameEn: 'Whole Tone Scale',
+        category: 'symmetric',
+        intervals: [0, 2, 4, 6, 8, 10],
+        intervalNames: ['1', '2', '3', '#4', '#5', 'b7'],
+        genres: '재즈, 현대 음악',
+        description: '모든 음이 온음 간격인 스케일로, 몽환적이고 방향성이 없는 사운드를 냅니다.'
+    },
+
+    // --- Modes (Separate Category) ---
+    'ionian': {
+        name: '아이오니안 (Mode 1)',
+        nameEn: 'Ionian Mode',
+        category: 'modes',
+        intervals: [0, 2, 4, 5, 7, 9, 11],
+        intervalNames: ['1', '2', '3', '4', '5', '6', '7'],
+        description: '메이저 스케일의 첫 번째 모드입니다.'
     },
     'dorian': {
-        name: '도리안 모드',
+        name: '도리안 (Mode 2)',
         nameEn: 'Dorian Mode',
+        category: 'modes',
         intervals: [0, 2, 3, 5, 7, 9, 10],
         intervalNames: ['1', '2', 'b3', '4', '5', '6', 'b7'],
-        genres: '펑크, 재즈, 퓨전',
-        stage: 3,
-        description: '마이너 스케일의 느낌이지만 6번째 음이 메이저라 밝은 요소가 있습니다. Carlos Santana가 즐겨 사용하며, 펑크나 퓨전 재즈에서 많이 활용됩니다.'
+        description: '두 번째 모드로, 펑키하고 세련된 마이너 사운드입니다.'
+    },
+    'phrygian': {
+        name: '프리지안 (Mode 3)',
+        nameEn: 'Phrygian Mode',
+        category: 'modes',
+        intervals: [0, 1, 3, 5, 7, 8, 10],
+        intervalNames: ['1', 'b2', 'b3', '4', '5', 'b6', 'b7'],
+        description: '세 번째 모드로, 어둡고 스페니쉬한 느낌을 줍니다.'
+    },
+    'lydian': {
+        name: '리디안 (Mode 4)',
+        nameEn: 'Lydian Mode',
+        category: 'modes',
+        intervals: [0, 2, 4, 6, 7, 9, 11],
+        intervalNames: ['1', '2', '3', '#4', '5', '6', '7'],
+        description: '네 번째 모드로, 신비롭고 공중에 떠 있는 듯한 밝은 사운드입니다.'
     },
     'mixolydian': {
-        name: '믹솔리디안 모드',
+        name: '믹솔리디안 (Mode 5)',
         nameEn: 'Mixolydian Mode',
+        category: 'modes',
         intervals: [0, 2, 4, 5, 7, 9, 10],
         intervalNames: ['1', '2', '3', '4', '5', '6', 'b7'],
-        genres: '블루스 록, 펑크, 컨트리',
-        stage: 3,
-        description: '메이저 스케일의 7번째 음을 반음 내린 스케일입니다. 도미넌트 7th 코드 위에서 연주할 때 완벽하게 어울리며, 밝으면서도 블루지한 느낌을 줍니다.'
+        description: '다섯 번째 모드로, 블루지한 메이저 사운드입니다.'
+    },
+    'aeolian': {
+        name: '에올리안 (Mode 6)',
+        nameEn: 'Aeolian Mode',
+        category: 'modes',
+        intervals: [0, 2, 3, 5, 7, 8, 10],
+        intervalNames: ['1', '2', 'b3', '4', '5', 'b6', 'b7'],
+        description: '여섯 번째 모드로, 자연 단음계(Natural Minor)와 같습니다.'
+    },
+    'locrian': {
+        name: '로크리안 (Mode 7)',
+        nameEn: 'Locrian Mode',
+        category: 'modes',
+        intervals: [0, 1, 3, 5, 6, 8, 10],
+        intervalNames: ['1', 'b2', 'b3', '4', 'b5', 'b6', 'b7'],
+        description: '일곱 번째 모드로, 가장 어둡고 불안정한 사운드를 냅니다.'
     }
 };
 

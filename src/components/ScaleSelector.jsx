@@ -1,20 +1,27 @@
-const SCALE_OPTIONS = [
-    { id: 'minor-pentatonic', icon: '⭐', name: '마이너 펜타토닉' },
-    { id: 'major', icon: '🎼', name: '메이저 스케일' },
-    { id: 'blues', icon: '🎷', name: '블루스 스케일' },
-    { id: 'natural-minor', icon: '🌙', name: '내추럴 마이너' },
-    { id: 'major-pentatonic', icon: '☀️', name: '메이저 펜타토닉' },
-    { id: 'harmonic-minor', icon: '🎻', name: '하모닉 마이너' },
-    { id: 'dorian', icon: '🎺', name: '도리안 모드' },
-    { id: 'mixolydian', icon: '🎹', name: '믹솔리디안 모드' }
-];
+import { SCALE_DEFINITIONS } from '../data/scales';
+
+const CATEGORY_ICONS = {
+    'pentatonic': '⭐',
+    'major-minor': '🎼',
+    'jazz': '🎷',
+    'symmetric': '🌀'
+};
 
 function ScaleSelector({ currentScale, onScaleChange }) {
+    // Filter scales for this tab (all except 'modes')
+    const scaleOptions = Object.entries(SCALE_DEFINITIONS)
+        .filter(([_, def]) => def.category !== 'modes')
+        .map(([id, def]) => ({
+            id,
+            name: def.name,
+            icon: CATEGORY_ICONS[def.category] || '🎵'
+        }));
+
     return (
         <section className="scale-selector-section">
             <h2 className="section-title">🎵 스케일 선택</h2>
             <div className="scale-tabs">
-                {SCALE_OPTIONS.map(scale => (
+                {scaleOptions.map(scale => (
                     <button
                         key={scale.id}
                         className={`scale-tab ${currentScale === scale.id ? 'active' : ''}`}
