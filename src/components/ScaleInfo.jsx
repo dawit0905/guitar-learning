@@ -1,8 +1,11 @@
 import { SCALE_DEFINITIONS, getScaleNotes } from '../data/scales';
+import { getCompatibleChords } from '../utils/scaleChords';
 
 function ScaleInfo({ currentScale, currentKey }) {
     const scale = SCALE_DEFINITIONS[currentScale];
     const scaleNotes = getScaleNotes(currentScale, currentKey);
+    const { primaryChords, secondaryChords } = getCompatibleChords(currentScale, currentKey);
+    const hasChords = primaryChords.length > 0 || secondaryChords.length > 0;
 
     if (!scale) return null;
 
@@ -25,6 +28,33 @@ function ScaleInfo({ currentScale, currentKey }) {
                             {scale.intervalNames.join(' - ')}
                         </span>
                     </div>
+                    {hasChords && (
+                        <div className="info-item chords">
+                            <span className="info-label">사용 코드:</span>
+                            <div className="info-value chords-value">
+                                {primaryChords.length > 0 && (
+                                    <div className="chord-section">
+                                        <div className="chord-group-label">기본 코드</div>
+                                        <div className="chord-badges">
+                                            {primaryChords.map((chord) => (
+                                                <span key={chord} className="chord-badge">{chord}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                                {secondaryChords.length > 0 && (
+                                    <div className="chord-section secondary">
+                                        <div className="chord-group-label">대체 코드</div>
+                                        <div className="chord-badges">
+                                            {secondaryChords.map((chord) => (
+                                                <span key={chord} className="chord-badge">{chord}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
                     <div className="info-item">
                         <span className="info-label">활용 장르:</span>
                         <span className="info-value">{scale.genres}</span>

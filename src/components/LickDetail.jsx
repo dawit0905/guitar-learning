@@ -1,6 +1,11 @@
 function LickDetail({ lick, onBack }) {
     if (!lick) return null;
 
+    const tabValue = (lick.tab || '').trim();
+    const isHttpUrl = /^https?:\/\//i.test(tabValue);
+    const isImageTab = /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(tabValue);
+    const isMidiTab = /\.mid(\?.*)?$/i.test(tabValue);
+
     return (
         <div className="section-content">
             <div className="detail-header">
@@ -34,22 +39,55 @@ function LickDetail({ lick, onBack }) {
                             </div>
                         )}
                         <div className="tab-display">
-                            {lick.tab.split('\n').map((line, lineIdx) => (
-                                <div key={lineIdx} className="tab-line">
-                                    {line.split('').map((char, charIdx) => {
-                                        let className = 'tab-char';
-                                        if (char === '|') className += ' bar-line';
-                                        else if (/[0-9]/.test(char)) className += ' note-number';
-                                        else if (char === '-') className += ' string-line';
-
-                                        return (
-                                            <span key={charIdx} className={className}>
-                                                {char}
-                                            </span>
-                                        );
-                                    })}
+                            {isImageTab ? (
+                                <div className="tab-media">
+                                    <img
+                                        src={tabValue}
+                                        alt={`${lick.title} 탭 이미지`}
+                                        className="tab-image"
+                                        loading="lazy"
+                                    />
                                 </div>
-                            ))}
+                            ) : isMidiTab ? (
+                                <div className="tab-media">
+                                    <a
+                                        className="tab-media-link"
+                                        href={tabValue}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        MIDI 파일 열기
+                                    </a>
+                                </div>
+                            ) : isHttpUrl ? (
+                                <div className="tab-media">
+                                    <a
+                                        className="tab-media-link"
+                                        href={tabValue}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        탭 링크 열기
+                                    </a>
+                                </div>
+                            ) : (
+                                tabValue.split('\n').map((line, lineIdx) => (
+                                    <div key={lineIdx} className="tab-line">
+                                        {line.split('').map((char, charIdx) => {
+                                            let className = 'tab-char';
+                                            if (char === '|') className += ' bar-line';
+                                            else if (/[0-9]/.test(char)) className += ' note-number';
+                                            else if (char === '-') className += ' string-line';
+
+                                            return (
+                                                <span key={charIdx} className={className}>
+                                                    {char}
+                                                </span>
+                                            );
+                                        })}
+                                    </div>
+                                ))
+                            )}
                         </div>
                     </div>
 
