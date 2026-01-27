@@ -4,7 +4,8 @@ function MainNav({ activeSection, onSectionChange }) {
         { id: 'modes', icon: '🎭', name: '모달' },
         { id: 'triads', icon: '🔺', name: '트라이어드' },
         { id: 'doublestops', icon: '🎸', name: '더블스탑' },
-        { id: 'chords', icon: '🎹', name: '코드' }
+        { id: 'chords', icon: '🎹', name: '코드' },
+        { id: 'licks', icon: '🔥', name: '기타 릭' }
     ];
 
     return (

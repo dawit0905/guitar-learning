@@ -14,6 +14,8 @@ import DoubleStopSection from './components/DoubleStopSection';
 import ChordSection from './components/ChordSection';
 import ModeSection from './components/ModeSection';
 import ScaleTheory from './components/ScaleTheory';
+import LicksPage from './components/LicksPage';
+import LickDetail from './components/LickDetail';
 import { SCALE_DEFINITIONS } from './data/scales';
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
   const [currentKey, setCurrentKey] = useState('A');
   const [showNotes, setShowNotes] = useState(true);
   const [showIntervals, setShowIntervals] = useState(false);
+  const [selectedLick, setSelectedLick] = useState(null);
 
   const handleStageClick = useCallback((stage) => {
     const scaleInStage = Object.entries(SCALE_DEFINITIONS)
@@ -87,6 +90,17 @@ function App() {
         return <DoubleStopSection />;
       case 'chords':
         return <ChordSection />;
+      case 'licks':
+        return selectedLick ? (
+          <LickDetail
+            lick={selectedLick}
+            onBack={() => setSelectedLick(null)}
+          />
+        ) : (
+          <LicksPage
+            onLickSelect={setSelectedLick}
+          />
+        );
       default:
         return null;
     }

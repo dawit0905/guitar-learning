@@ -127,12 +127,52 @@ export const CHORD_TYPES = {
 
     // Extended Chords
     'ninth': {
-        name: '나인스',
+        name: '도미넌트 9th',
         symbol: '9',
         category: 'extended',
         intervals: [0, 4, 7, 10, 14],
         intervalNames: ['1', '3', '5', 'b7', '9'],
-        description: '펑키하고 세련된 느낌. Hendrix 코드라고도 불림.'
+        description: '펑키하고 세련된 느낌. Hendrix 코드의 기반.'
+    },
+    'major9': {
+        name: '메이저 9th',
+        symbol: 'maj9',
+        category: 'extended',
+        intervals: [0, 4, 7, 11, 14],
+        intervalNames: ['1', '3', '5', '7', '9'],
+        description: '매우 부드럽고 화려한 사운드. 팝과 재즈에서 빈번히 사용.'
+    },
+    'minor9': {
+        name: '마이너 9th',
+        symbol: 'm9',
+        category: 'extended',
+        intervals: [0, 3, 7, 10, 14],
+        intervalNames: ['1', 'b3', '5', 'b7', '9'],
+        description: '감성적이고 깊이 있는 마이너 사운드.'
+    },
+    'eleventh': {
+        name: '11th',
+        symbol: '11',
+        category: 'extended',
+        intervals: [0, 4, 7, 10, 14, 17],
+        intervalNames: ['1', '3', '5', 'b7', '9', '11'],
+        description: '매우 현대적인 사운드. 보통 3도를 생략하기도 함.'
+    },
+    'minor11': {
+        name: '마이너 11th',
+        symbol: 'm11',
+        category: 'extended',
+        intervals: [0, 3, 7, 10, 14, 17],
+        intervalNames: ['1', 'b3', '5', 'b7', '9', '11'],
+        description: 'R&B, 네오소울의 핵심적인 코드.'
+    },
+    'thirteenth': {
+        name: '13th',
+        symbol: '13',
+        category: 'extended',
+        intervals: [0, 4, 7, 10, 14, 21],
+        intervalNames: ['1', '3', '5', 'b7', '9', '13'],
+        description: '도미넌트 계열의 가장 확장된 형태. 재즈의 꽃.'
     },
     'add9': {
         name: '애드 나인',
@@ -140,7 +180,7 @@ export const CHORD_TYPES = {
         category: 'extended',
         intervals: [0, 4, 7, 14],
         intervalNames: ['1', '3', '5', '9'],
-        description: '7도 없이 9도만 추가. 팝에서 많이 사용.'
+        description: '7도 없이 9도만 추가. 맑고 깨끗한 느낌.'
     },
 
     // Altered & Diminished Chords
@@ -159,6 +199,38 @@ export const CHORD_TYPES = {
         intervals: [0, 3, 6, 9],
         intervalNames: ['1', 'b3', 'b5', 'bb7'],
         description: '불안정하고 긴장된 사운드. 반음 위로 해결되는 성질.'
+    },
+    'dom7b9': {
+        name: '7th 플랫9 (b9)',
+        symbol: '7b9',
+        category: 'altered',
+        intervals: [0, 4, 7, 10, 13],
+        intervalNames: ['1', '3', '5', 'b7', 'b9'],
+        description: '도미넌트의 긴장감을 극대화. 마이너 키로 해결될 때 사용.'
+    },
+    'dom7#9': {
+        name: '7th 샵9 (#9)',
+        symbol: '7#9',
+        category: 'altered',
+        intervals: [0, 4, 7, 10, 15],
+        intervalNames: ['1', '3', '5', 'b7', '#9'],
+        description: '소위 "Hendrix Chord". 록과 블루스에서 매우 인기.'
+    },
+    'dom7#11': {
+        name: '7th 샵11 (#11)',
+        symbol: '7#11',
+        category: 'altered',
+        intervals: [0, 4, 7, 10, 14, 18],
+        intervalNames: ['1', '3', '5', 'b7', '9', '#11'],
+        description: '리디안 도미넌트 사운드. 세련된 긴장감을 제공.'
+    },
+    'dom7b13': {
+        name: '7th 플랫13 (b13)',
+        symbol: '7b13',
+        category: 'altered',
+        intervals: [0, 4, 10, 14, 20],
+        intervalNames: ['1', '3', 'b7', '9', 'b13'],
+        description: '얼터드 스케일 사운드. 강한 해결감을 유도.'
     },
     'augmented': {
         name: '어그먼티드',
