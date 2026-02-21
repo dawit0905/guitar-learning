@@ -56,13 +56,13 @@ export const CHORD_TYPES = {
 
     // Barre Chords
     'major-barre-E': {
-        name: '메이저 바레 (E폼)',
+        name: '메이저 바레',
         symbol: '',
         category: 'barre',
         baseForm: 'E',
         intervals: [0, 4, 7],
         shape: { frets: [0, 2, 2, 1, 0, 0], fingers: [1, 3, 4, 2, 1, 1] },
-        description: 'E 코드 형태를 이동. 6번줄이 루트.'
+        description: '대표적인 이동형 메이저 바레 코드.'
     },
     'major-barre-A': {
         name: '메이저 바레 (A폼)',
@@ -74,13 +74,13 @@ export const CHORD_TYPES = {
         description: 'A 코드 형태를 이동. 5번줄이 루트.'
     },
     'minor-barre-E': {
-        name: '마이너 바레 (E폼)',
+        name: '마이너 바레',
         symbol: 'm',
         category: 'barre',
         baseForm: 'Em',
         intervals: [0, 3, 7],
         shape: { frets: [0, 2, 2, 0, 0, 0], fingers: [1, 3, 4, 1, 1, 1] },
-        description: 'Em 코드 형태를 이동. 6번줄이 루트.'
+        description: '대표적인 이동형 마이너 바레 코드.'
     },
     'minor-barre-A': {
         name: '마이너 바레 (A폼)',
