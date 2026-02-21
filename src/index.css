@@ -270,6 +270,13 @@ body {
   color: var(--text-primary);
 }
 
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: calc(var(--spacing-sm) * -1) 0 var(--spacing-md);
+  line-height: 1.5;
+}
+
 /* ====================================
    Roadmap Section
    ==================================== */
@@ -400,6 +407,15 @@ body {
   justify-content: center;
 }
 
+.chord-key-first .key-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(52px, 1fr));
+}
+
+.chord-key-first .key-btn {
+  width: 100%;
+}
+
 .key-btn {
   width: 50px;
   height: 50px;
@@ -427,6 +443,99 @@ body {
   background: var(--accent-gradient);
   border-color: var(--accent-primary);
   box-shadow: var(--shadow-glow);
+}
+
+.chord-builder-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.chord-builder-flow {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.chord-builder-step {
+  padding: var(--spacing-md);
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  transition: all var(--transition-normal);
+}
+
+.chord-builder-step:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+.chord-builder-step.active {
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.chord-builder-title {
+  font-size: 0.95rem;
+  margin: 0 0 6px;
+}
+
+.chord-builder-description {
+  margin: 0 0 var(--spacing-sm);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.chord-type-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.chord-type-tabs .option-tab {
+  width: 50px;
+  height: 50px;
+  padding: 4px;
+  border-radius: 10px;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+}
+
+.chord-type-tabs .option-tab:hover {
+  transform: translateY(-1px) scale(1.03);
+}
+
+.chord-type-tabs .option-tab.disabled,
+.chord-type-tabs .option-tab.disabled:hover {
+  opacity: 0.38;
+  cursor: not-allowed;
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+}
+
+.chord-picker-main {
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.chord-picker-main.tight {
+  font-size: 0.62rem;
+}
+
+.chord-picker-sub {
+  font-size: 0.52rem;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.chord-type-tabs .option-tab.active .chord-picker-main,
+.chord-type-tabs .option-tab.active .chord-picker-sub {
+  color: white;
 }
 
 /* ====================================
