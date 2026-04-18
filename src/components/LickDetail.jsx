@@ -5,27 +5,41 @@ function LickDetail({ lick, onBack }) {
     const isHttpUrl = /^https?:\/\//i.test(tabValue);
     const isImageTab = /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i.test(tabValue);
     const isMidiTab = /\.mid(\?.*)?$/i.test(tabValue);
+    const difficultyKo = lick.difficulty === 'Beginner' ? '입문' :
+        lick.difficulty === 'Intermediate' ? '중급' : '고급';
+    const primaryKey = lick.keys && lick.keys[0];
 
     return (
-        <div className="section-content">
+        <div className="section-content lick-detail">
             <div className="detail-header">
                 <button className="back-btn" onClick={onBack}>
-                    ← 목록으로 돌아가기
+                    ← 목록으로 돌아가기 · Back to Index
                 </button>
             </div>
 
-            <section className="fretboard-section">
+            <section className="fretboard-section lick-detail-section">
                 <div className="lick-detail-info">
                     <div className="lick-meta">
-                        <span className={`difficulty-badge ${lick.difficulty.toLowerCase()}`}>
-                            {lick.difficulty === 'Beginner' ? '입문' :
-                                lick.difficulty === 'Intermediate' ? '중급' : '고급'}
+                        <span className="lick-kicker">
+                            LICK № {lick.id}
+                            {primaryKey && ` — ${primaryKey}`}
+                            {lick.difficulty && ` · ${lick.difficulty.toUpperCase()}`}
                         </span>
                         <h2 className="lick-title">{lick.title}</h2>
-                        <span className="lick-credits">작성자: {lick.author} | 날짜: {lick.date}</span>
+                        <span className="lick-credits">
+                            <span className={`difficulty-badge ${lick.difficulty.toLowerCase()}`}>
+                                {difficultyKo}
+                            </span>
+                            <span>by {lick.author}</span>
+                            <span className="lick-meta-sep" aria-hidden="true">—</span>
+                            <span>{lick.date}</span>
+                        </span>
                     </div>
 
                     <div className="tab-container">
+                        <span className="tab-measure-marks" aria-hidden="true">
+                            <span>M 1</span><span>2</span><span>3</span><span>4</span>
+                        </span>
                         {lick.chords && lick.chords.length > 0 && (
                             <div className="tab-chords">
                                 {Array.from({ length: 100 }).map((_, i) => {
@@ -50,23 +64,13 @@ function LickDetail({ lick, onBack }) {
                                 </div>
                             ) : isMidiTab ? (
                                 <div className="tab-media">
-                                    <a
-                                        className="tab-media-link"
-                                        href={tabValue}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
+                                    <a className="tab-media-link" href={tabValue} target="_blank" rel="noreferrer">
                                         MIDI 파일 열기
                                     </a>
                                 </div>
                             ) : isHttpUrl ? (
                                 <div className="tab-media">
-                                    <a
-                                        className="tab-media-link"
-                                        href={tabValue}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
+                                    <a className="tab-media-link" href={tabValue} target="_blank" rel="noreferrer">
                                         탭 링크 열기
                                     </a>
                                 </div>
@@ -92,7 +96,7 @@ function LickDetail({ lick, onBack }) {
                     </div>
 
                     <div className="description-container">
-                        <h3>📖 설명</h3>
+                        <h3>설명 · Notes</h3>
                         <p>{lick.description}</p>
                     </div>
                 </div>

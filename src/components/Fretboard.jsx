@@ -3,8 +3,9 @@ import { SCALE_DEFINITIONS, getScaleNotes, getNoteAtFret, isNoteInScale } from '
 
 const FRET_COUNT = 15;
 const FRET_MARKERS = [3, 5, 7, 9, 12, 15];
+const SINGLE_INLAY_FRETS = [3, 5, 7, 9, 15];
+const DOUBLE_INLAY_FRETS = [12];
 
-// Format interval with proper flat symbol alignment
 function formatInterval(interval) {
     if (interval.startsWith('b')) {
         return (
@@ -48,14 +49,21 @@ function Fretboard({ currentScale, currentKey, showNotes, showIntervals, onToggl
     return (
         <section className="fretboard-section">
             <div className="fretboard-header">
-                <h2 className="section-title">🎸 {currentKey} {scale?.name || ''}</h2>
+                <div className="fretboard-title-block">
+                    <span className="fretboard-kicker">지판 다이어그램 — FIG. I</span>
+                    <h2 className="section-title fretboard-title">
+                        <span className="section-title-ko">{currentKey} {scale?.name || ''}</span>
+                        <span className="section-title-en">Fretboard Diagram</span>
+                    </h2>
+                </div>
                 <div className="fretboard-controls">
                     <div className="position-selector">
-                        <span className="control-label">포지션:</span>
+                        <span className="control-label">포지션</span>
                         <select
                             value={selectedPosition}
                             onChange={(e) => setSelectedPosition(e.target.value)}
                             className="position-select"
+                            aria-label="프렛보드 포지션 선택"
                         >
                             {POSITIONS.map(pos => (
                                 <option key={pos.id} value={pos.id}>{pos.name}</option>
@@ -69,7 +77,7 @@ function Fretboard({ currentScale, currentKey, showNotes, showIntervals, onToggl
                             onChange={(e) => onToggleNotes(e.target.checked)}
                         />
                         <span className="toggle-slider"></span>
-                        음이름 표시
+                        음이름
                     </label>
                     <label className="toggle-label">
                         <input
@@ -78,13 +86,33 @@ function Fretboard({ currentScale, currentKey, showNotes, showIntervals, onToggl
                             onChange={(e) => onToggleIntervals(e.target.checked)}
                         />
                         <span className="toggle-slider"></span>
-                        음정 표시
+                        음정
                     </label>
                 </div>
             </div>
 
             <div className="fretboard-container">
                 <div className="fretboard">
+                    {/* Inlay dot layer */}
+                    <div className="fretboard-inlays" aria-hidden="true">
+                        <div className="inlay-spacer" />
+                        {Array.from({ length: FRET_COUNT + 1 }, (_, fret) => {
+                            const isSingle = SINGLE_INLAY_FRETS.includes(fret);
+                            const isDouble = DOUBLE_INLAY_FRETS.includes(fret);
+                            return (
+                                <div key={fret} className="inlay-cell">
+                                    {isSingle && <span className="inlay-dot" />}
+                                    {isDouble && (
+                                        <>
+                                            <span className="inlay-dot double top" />
+                                            <span className="inlay-dot double bottom" />
+                                        </>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+
                     {/* Fret numbers row */}
                     <div className="fret-numbers-row">
                         <div className="string-label"></div>
@@ -114,16 +142,18 @@ function Fretboard({ currentScale, currentKey, showNotes, showIntervals, onToggl
                                         className={`fret ${fret === 0 ? 'nut' : ''} ${isPos && selectedPosition !== 'all' ? 'highlighted' : ''}`}
                                     >
                                         {scaleNote && (
-                                            <div
+                                            <button
+                                                type="button"
                                                 className={`note-dot ${note === currentKey ? 'root' :
                                                     scaleNote.isBlueNote ? 'blue-note' :
                                                         'scale-note'
                                                     } ${clickedNote === noteId ? 'clicked' : ''} ${!isPos ? 'dimmed' : ''}`}
                                                 onClick={() => handleNoteClick(stringIndex, fret)}
+                                                aria-label={`${stringIndex + 1}번 줄 ${fret}프렛, ${note}, ${scaleNote.interval}`}
                                             >
                                                 {showIntervals ? formatInterval(scaleNote.interval) :
                                                     showNotes ? note : ''}
-                                            </div>
+                                            </button>
                                         )}
                                     </div>
                                 );
@@ -132,6 +162,13 @@ function Fretboard({ currentScale, currentKey, showNotes, showIntervals, onToggl
                     ))}
                 </div>
             </div>
+
+            <figcaption className="fretboard-caption">
+                <span className="caption-label">Fig. I</span>
+                <span className="caption-body">
+                    지판 다이어그램. <em>적색</em>은 루트, <em>황동</em>은 블루노트, <em>아이보리</em>는 스케일 구성음.
+                </span>
+            </figcaption>
         </section>
     );
 }

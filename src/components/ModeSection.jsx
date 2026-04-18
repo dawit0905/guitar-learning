@@ -23,7 +23,10 @@ function ModeSection({
     return (
         <div className="mode-section">
             <section className="scale-selector-section">
-                <h2 className="section-title">🎭 7가지 모드 (Major Scale Modes)</h2>
+                <h2 className="section-title">
+                    <span className="section-title-ko">7가지 모드</span>
+                    <span className="section-title-en">The Seven Modes</span>
+                </h2>
                 <div className="scale-tabs">
                     {MODE_ORDER.map(modeId => {
                         const mode = SCALE_DEFINITIONS[modeId];
@@ -33,7 +36,6 @@ function ModeSection({
                                 className={`scale-tab ${activeModeId === modeId ? 'active' : ''}`}
                                 onClick={() => setCurrentMode(modeId)}
                             >
-                                <span className="tab-icon">🎭</span>
                                 {mode.name}
                             </button>
                         );

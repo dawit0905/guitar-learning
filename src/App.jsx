@@ -114,19 +114,17 @@ function App() {
     switch (activeSection) {
       case 'scales':
         return (
-          <>
-            <Roadmap
-              currentScale={currentScale}
-              onStageClick={handleStageClick}
-            />
-            <ScaleSelector
-              currentScale={currentScale}
-              onScaleChange={setCurrentScale}
-            />
-            <KeySelector
-              currentKey={currentKey}
-              onKeyChange={setCurrentKey}
-            />
+          <div className="scales-spread">
+            <div className="spread-controls">
+              <ScaleSelector
+                currentScale={currentScale}
+                onScaleChange={setCurrentScale}
+              />
+              <KeySelector
+                currentKey={currentKey}
+                onKeyChange={setCurrentKey}
+              />
+            </div>
             <Fretboard
               currentScale={currentScale}
               currentKey={currentKey}
@@ -135,16 +133,26 @@ function App() {
               onToggleNotes={setShowNotes}
               onToggleIntervals={setShowIntervals}
             />
-            <ScaleInfo
+            <div className="spread-grid">
+              <aside className="spread-side">
+                <ScaleInfo
+                  currentScale={currentScale}
+                  currentKey={currentKey}
+                />
+                <Legend />
+              </aside>
+              <section className="spread-main">
+                <ScaleTheory
+                  currentScale={currentScale}
+                />
+                <PracticeTips />
+              </section>
+            </div>
+            <Roadmap
               currentScale={currentScale}
-              currentKey={currentKey}
+              onStageClick={handleStageClick}
             />
-            <ScaleTheory
-              currentScale={currentScale}
-            />
-            <Legend />
-            <PracticeTips />
-          </>
+          </div>
         );
       case 'modes':
         return (

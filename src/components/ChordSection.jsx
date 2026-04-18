@@ -521,7 +521,10 @@ function ChordSection() {
     return (
         <div className="section-content">
             <section className="key-selector-section chord-key-first">
-                <h2 className="section-title">🔑 12키 선택</h2>
+                <h2 className="section-title">
+                    <span className="section-title-ko">12키 선택</span>
+                    <span className="section-title-en">Twelve Keys</span>
+                </h2>
                 <p className="section-subtitle">먼저 키를 고르고, 아래에서 코드 요소를 추가하세요.</p>
                 <div className="key-selector">
                     {NOTES.map((note) => (
@@ -537,7 +540,10 @@ function ChordSection() {
             </section>
 
             <section className="selector-section chord-builder-section">
-                <h2 className="section-title">🧩 코드 빌더</h2>
+                <h2 className="section-title">
+                    <span className="section-title-ko">코드 빌더</span>
+                    <span className="section-title-en">Chord Builder</span>
+                </h2>
                 <p className="section-subtitle">트라이어드를 기준으로 7th/텐션/변화음을 누적해서 만드세요.</p>
                 <div className="chord-builder-flow">
                     {CHORD_BUILDER_STEPS.map((step) => (
@@ -578,7 +584,13 @@ function ChordSection() {
 
             <section className="fretboard-section">
                 <div className="fretboard-header">
-                    <h2 className="section-title">🎸 {chordLabel}</h2>
+                    <div className="fretboard-title-block">
+                        <span className="fretboard-kicker">FIG. IV — 코드</span>
+                        <h2 className="section-title fretboard-title">
+                            <span className="section-title-ko">{chordLabel}</span>
+                            <span className="section-title-en">Chord Voicing</span>
+                        </h2>
+                    </div>
                     <div className="fretboard-controls">
                         <label className="toggle-label">
                             <input
@@ -587,7 +599,7 @@ function ChordSection() {
                                 onChange={(e) => setShowNotes(e.target.checked)}
                             />
                             <span className="toggle-slider"></span>
-                            음이름 표시
+                            음이름
                         </label>
                         <label className="toggle-label">
                             <input
@@ -596,7 +608,7 @@ function ChordSection() {
                                 onChange={(e) => setShowIntervals(e.target.checked)}
                             />
                             <span className="toggle-slider"></span>
-                            음정 표시
+                            음정
                         </label>
                     </div>
                 </div>
@@ -639,7 +651,10 @@ function ChordSection() {
             <section className="scale-info-section">
                 <div className="info-card">
                     <div className="info-header">
-                        <h3>📖 코드 정보</h3>
+                        <h3 className="section-title">
+                            <span className="section-title-ko">코드 정보</span>
+                            <span className="section-title-en">Chord Reference</span>
+                        </h3>
                     </div>
                     <div className="info-content">
                         <div className="info-item">

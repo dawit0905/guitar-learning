@@ -11,12 +11,15 @@ function ScaleTheory({ currentScale }) {
         <section className="scale-theory-section">
             <div className="theory-card">
                 <div className="theory-header">
-                    <h3>💡 음악 이론 & 활용</h3>
+                    <h3 className="section-title">
+                        <span className="section-title-ko">음악 이론 & 활용</span>
+                        <span className="section-title-en">Theory & Application</span>
+                    </h3>
                 </div>
                 <div className="theory-content">
                     {scale.diatonicChords && (
                         <div className="theory-item">
-                            <span className="theory-label">사용 가능한 코드 (Diatonic):</span>
+                            <span className="theory-label">Diatonic Chords · 사용 가능한 코드</span>
                             <div className="chord-badges">
                                 {scale.diatonicChords.map((chord, i) => (
                                     <span key={i} className="chord-badge">{chord}</span>
@@ -27,7 +30,7 @@ function ScaleTheory({ currentScale }) {
 
                     {scale.recommendProgression && (
                         <div className="theory-item">
-                            <span className="theory-label">추천 연습 진행:</span>
+                            <span className="theory-label">Recommended Progression · 추천 진행</span>
                             <p className="progression-text">{scale.recommendProgression}</p>
                         </div>
                     )}

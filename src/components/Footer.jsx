@@ -1,8 +1,11 @@
 function Footer() {
     return (
         <footer className="footer">
-            <p>🎸 기타 스케일 마스터 - 실전 중심 스케일 학습</p>
-            <p className="footer-sub">스케일을 익히고 즉흥 연주의 세계로!</p>
+            <div className="footer-rule" aria-hidden="true">
+                <span>✦</span>
+            </div>
+            <p className="footer-main">Luthier's Manual — 실전 중심 스케일 학습</p>
+            <p className="footer-sub">A practitioner's catalogue for the modern electric guitar · Vol. I · Spring 2026</p>
         </footer>
     );
 }

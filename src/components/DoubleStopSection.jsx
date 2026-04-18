@@ -3,11 +3,11 @@ import { DOUBLE_STOP_TYPES, getDoubleStopNotes } from '../data/doublestops';
 import { NOTES, getNoteAtFret } from '../data/scales';
 
 const DOUBLE_STOP_OPTIONS = [
-    { id: 'thirds', icon: '3️⃣', name: '3도' },
-    { id: 'sixths', icon: '6️⃣', name: '6도' },
-    { id: 'octaves', icon: '🎯', name: '옥타브' },
-    { id: 'fourths', icon: '4️⃣', name: '4도' },
-    { id: 'fifths', icon: '5️⃣', name: '5도 (파워)' }
+    { id: 'thirds', name: '3도' },
+    { id: 'sixths', name: '6도' },
+    { id: 'octaves', name: '옥타브' },
+    { id: 'fourths', name: '4도' },
+    { id: 'fifths', name: '5도 (파워)' }
 ];
 
 const FRET_COUNT = 12;
@@ -71,7 +71,10 @@ function DoubleStopSection() {
         <div className="section-content">
             {/* Double Stop Type Selector */}
             <section className="selector-section">
-                <h2 className="section-title">🎸 더블스탑 종류</h2>
+                <h2 className="section-title">
+                    <span className="section-title-ko">더블스탑 종류</span>
+                    <span className="section-title-en">Double Stops</span>
+                </h2>
                 <div className="option-tabs">
                     {DOUBLE_STOP_OPTIONS.map(opt => (
                         <button
@@ -79,7 +82,6 @@ function DoubleStopSection() {
                             className={`option-tab ${currentType === opt.id ? 'active' : ''}`}
                             onClick={() => setCurrentType(opt.id)}
                         >
-                            <span className="tab-icon">{opt.icon}</span>
                             {opt.name}
                         </button>
                     ))}
@@ -88,7 +90,10 @@ function DoubleStopSection() {
 
             {/* Key Selector */}
             <section className="key-selector-section">
-                <h2 className="section-title">🔑 키(Key) 선택</h2>
+                <h2 className="section-title">
+                    <span className="section-title-ko">키(Key) 선택</span>
+                    <span className="section-title-en">Select Key</span>
+                </h2>
                 <div className="key-selector">
                     {NOTES.map(note => (
                         <button
@@ -105,7 +110,13 @@ function DoubleStopSection() {
             {/* Double Stop Fretboard */}
             <section className="fretboard-section">
                 <div className="fretboard-header">
-                    <h2 className="section-title">🎸 {currentKey} {doubleStop?.name}</h2>
+                    <div className="fretboard-title-block">
+                        <span className="fretboard-kicker">FIG. III — 더블스탑</span>
+                        <h2 className="section-title fretboard-title">
+                            <span className="section-title-ko">{currentKey} {doubleStop?.name}</span>
+                            <span className="section-title-en">Double Stops</span>
+                        </h2>
+                    </div>
                     <div className="fretboard-controls">
                         <label className="toggle-label">
                             <input
@@ -114,7 +125,7 @@ function DoubleStopSection() {
                                 onChange={(e) => setShowNotes(e.target.checked)}
                             />
                             <span className="toggle-slider"></span>
-                            음이름 표시
+                            음이름
                         </label>
                         <label className="toggle-label">
                             <input
@@ -123,7 +134,7 @@ function DoubleStopSection() {
                                 onChange={(e) => setShowIntervals(e.target.checked)}
                             />
                             <span className="toggle-slider"></span>
-                            음정 표시
+                            음정
                         </label>
                     </div>
                 </div>
@@ -169,7 +180,10 @@ function DoubleStopSection() {
             <section className="scale-info-section">
                 <div className="info-card">
                     <div className="info-header">
-                        <h3>📖 더블스탑 정보</h3>
+                        <h3 className="section-title">
+                            <span className="section-title-ko">더블스탑 정보</span>
+                            <span className="section-title-en">Double Stop Reference</span>
+                        </h3>
                     </div>
                     <div className="info-content">
                         <div className="info-item">

@@ -1,13 +1,17 @@
-import { useState } from 'react';
-
 function Header() {
     return (
         <header className="header">
-            <div className="logo">
-                <span className="logo-icon">🎸</span>
-                <h1>기타 스케일 마스터</h1>
+            <div className="header-kicker">
+                <span className="kicker-mark">§ 00</span>
+                <span className="kicker-label">Luthier's Manual</span>
             </div>
-            <p className="subtitle">실전 활용도 순으로 배우는 스케일 학습</p>
+
+            <h1 className="header-title">지판 안내서</h1>
+
+            <p className="header-subtitle">
+                <span className="subtitle-rule" aria-hidden="true" />
+                <span>A Practitioner's Guide to the Fretboard · Vol. I</span>
+            </p>
         </header>
     );
 }

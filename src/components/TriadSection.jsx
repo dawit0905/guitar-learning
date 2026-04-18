@@ -3,10 +3,10 @@ import { TRIAD_TYPES, getTriadNotes } from '../data/triads';
 import { NOTES, getNoteAtFret } from '../data/scales';
 
 const TRIAD_OPTIONS = [
-    { id: 'major', icon: '🔺', name: '메이저' },
-    { id: 'minor', icon: '🔻', name: '마이너' },
-    { id: 'diminished', icon: '⬇️', name: '디미니쉬드' },
-    { id: 'augmented', icon: '⬆️', name: '어그먼티드' }
+    { id: 'major', name: '메이저', en: 'Major' },
+    { id: 'minor', name: '마이너', en: 'Minor' },
+    { id: 'diminished', name: '디미니쉬드', en: 'Dim' },
+    { id: 'augmented', name: '어그먼티드', en: 'Aug' }
 ];
 
 const FRET_COUNT = 12;
@@ -49,7 +49,10 @@ function TriadSection() {
         <div className="section-content">
             {/* Triad Type Selector */}
             <section className="selector-section">
-                <h2 className="section-title">🔺 트라이어드 종류</h2>
+                <h2 className="section-title">
+                    <span className="section-title-ko">트라이어드 종류</span>
+                    <span className="section-title-en">Triad Types</span>
+                </h2>
                 <div className="option-tabs">
                     {TRIAD_OPTIONS.map(opt => (
                         <button
@@ -57,7 +60,6 @@ function TriadSection() {
                             className={`option-tab ${currentTriad === opt.id ? 'active' : ''}`}
                             onClick={() => setCurrentTriad(opt.id)}
                         >
-                            <span className="tab-icon">{opt.icon}</span>
                             {opt.name}
                         </button>
                     ))}
@@ -66,7 +68,10 @@ function TriadSection() {
 
             {/* Key Selector */}
             <section className="key-selector-section">
-                <h2 className="section-title">🔑 키(Key) 선택</h2>
+                <h2 className="section-title">
+                    <span className="section-title-ko">키(Key) 선택</span>
+                    <span className="section-title-en">Select Key</span>
+                </h2>
                 <div className="key-selector">
                     {NOTES.map(note => (
                         <button
@@ -83,7 +88,13 @@ function TriadSection() {
             {/* Triad Fretboard */}
             <section className="fretboard-section">
                 <div className="fretboard-header">
-                    <h2 className="section-title">🎸 {currentKey} {triad?.name}</h2>
+                    <div className="fretboard-title-block">
+                        <span className="fretboard-kicker">FIG. II — 트라이어드</span>
+                        <h2 className="section-title fretboard-title">
+                            <span className="section-title-ko">{currentKey} {triad?.name}</span>
+                            <span className="section-title-en">Triad Diagram</span>
+                        </h2>
+                    </div>
                     <div className="fretboard-controls">
                         <label className="toggle-label">
                             <input
@@ -92,7 +103,7 @@ function TriadSection() {
                                 onChange={(e) => setShowNotes(e.target.checked)}
                             />
                             <span className="toggle-slider"></span>
-                            음이름 표시
+                            음이름
                         </label>
                         <label className="toggle-label">
                             <input
@@ -101,7 +112,7 @@ function TriadSection() {
                                 onChange={(e) => setShowIntervals(e.target.checked)}
                             />
                             <span className="toggle-slider"></span>
-                            음정 표시
+                            음정
                         </label>
                     </div>
                 </div>
@@ -147,7 +158,10 @@ function TriadSection() {
             <section className="scale-info-section">
                 <div className="info-card">
                     <div className="info-header">
-                        <h3>📖 트라이어드 정보</h3>
+                        <h3 className="section-title">
+                            <span className="section-title-ko">트라이어드 정보</span>
+                            <span className="section-title-en">Triad Reference</span>
+                        </h3>
                     </div>
                     <div className="info-content">
                         <div className="info-item">
